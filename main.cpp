@@ -6,6 +6,7 @@ private:
     int noDatos = 365;
     int tacos[365]{};
     unsigned tiempos[9]{};
+
 public:
     void generarArreglo();
     void imprimirArreglo();
@@ -18,6 +19,7 @@ public:
     void heapSort();
     void mergeSort();
     void radixSort();
+
 };
 
 void comeTacos::generarArreglo() {
@@ -129,6 +131,7 @@ void comeTacos::quickSort() {
 
 }
 
+
 void comeTacos::heapSort() {
 
 }
@@ -151,7 +154,6 @@ int main() {
 
     cout <<endl << "Tacos comidos al dia ordenados: " << endl;
 
-    degustador1.shellSort();
     degustador1.imprimirArreglo();
 
 

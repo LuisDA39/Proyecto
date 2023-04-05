@@ -1,10 +1,11 @@
 #include <iostream>
 using namespace  std;
 
-class tacosComidos {
+class comeTacos {
 private:
-    int noDatos = 20000;
-    int tacos[];
+    int noDatos = 365;
+    int tacos[365]{};
+    unsigned tiempos[9]{};
 public:
     void generarArreglo();
     void imprimirArreglo();
@@ -19,7 +20,7 @@ public:
     void radixSort();
 };
 
-void tacosComidos::generarArreglo() {
+void comeTacos::generarArreglo() {
     srand(time(nullptr));
 
     for (int i = 0; i < noDatos; i++) {
@@ -27,48 +28,131 @@ void tacosComidos::generarArreglo() {
     }
 }
 
-void tacosComidos::imprimirArreglo() {
+void comeTacos::imprimirArreglo() {
     for (int i = 0; i < noDatos; i++) {
-        cout << tacos[i];
+        cout << tacos[i] << " ";
     }
 }
 
-void tacosComidos::bubbleSort() {
+void comeTacos::bubbleSort() {
+    bool interruptor = true;
+    int pasada, j;
+    for (pasada = 0; pasada < noDatos - 1 && interruptor; pasada++) {
+        interruptor = false;
+        for (j = 0; j < noDatos - pasada - 1; j++)
+            if (tacos[j] > tacos[j + 1]) {
+                interruptor = true;
+                int aux = tacos[j];
+                tacos[j] = tacos[j + 1];
+                tacos[j + 1] = aux;
+
+            }
+    }
+}
+
+void comeTacos::selectionSort() {
+    for(int i = 0; i < noDatos; i++) {
+        int min = i;
+        for (int j = i + 1; j < noDatos; j++) {
+            if (tacos[j] < tacos[min]) {
+                min = j;
+            }
+        }
+        int aux = tacos[i];
+        tacos[i] = tacos[min];
+        tacos[min] = aux;
+    }
+}
+
+void comeTacos::insertionSort() {
+    for (int i = 0; i < noDatos; i++) {
+        int pos = i;
+        int aux = tacos[i];
+
+        while ((pos > 0) && (tacos[pos - 1] > aux)) {
+            tacos[pos] = tacos[pos - 1];
+            pos--;
+        }
+
+        tacos[pos] = aux;
+
+    }
+}
+
+void comeTacos::countingSort() {
+    int size = noDatos;
+    int output[size];
+    int count[11];
+    int max = tacos[0];
+
+    for (int i = 1; i < size; i++) {
+        if (tacos[i] > max)
+            max = tacos[i];
+    }
+
+    for (int i = 0; i <= max; ++i) {
+        count[i] = 0;
+    }
+
+    for (int i = 0; i < size; i++) {
+        count[tacos[i]]++;
+    }
+
+    for (int i = 1; i <= max; i++) {
+        count[i] += count[i - 1];
+    }
+
+    for (int i = size - 1; i >= 0; i--) {
+        output[count[tacos[i]] - 1] = tacos[i];
+        count[tacos[i]]--;
+    }
+
+    for (int i = 0; i < size; i++) {
+        tacos[i] = output[i];
+    }
+}
+
+void comeTacos::shellSort() {
+    for (int gap = noDatos/2; gap > 0; gap /= 2) {
+        for (int i = gap; i < noDatos; i++) {
+            int temp = tacos[i];
+            int j;
+            for (j = i; j >= gap && tacos[j - gap] > temp; j -= gap){
+                tacos[j] = tacos[j - gap];
+            }
+            tacos[j] = temp;
+        }
+    }
+}
+
+void comeTacos::quickSort() {
 
 }
 
-void tacosComidos::selectionSort() {
+void comeTacos::heapSort() {
 
 }
 
-void tacosComidos::insertionSort() {
+void comeTacos::mergeSort() {
 
 }
 
-void tacosComidos::countingSort() {
-
-}
-
-void tacosComidos::shellSort() {
-
-}
-
-void tacosComidos::quickSort() {
-
-}
-
-void tacosComidos::heapSort() {
-
-}
-
-void tacosComidos::mergeSort() {
-
-}
-
-void tacosComidos::radixSort() {
+void comeTacos::radixSort() {
 
 }
 
 int main() {
-    int h;
+    comeTacos degustador1;
+
+    cout << "Tacos comidos al dia desordenados: " << endl;
+
+    degustador1.generarArreglo();
+    degustador1.imprimirArreglo();
+
+    cout <<endl << "Tacos comidos al dia ordenados: " << endl;
+
+    degustador1.shellSort();
+    degustador1.imprimirArreglo();
+
+
 }

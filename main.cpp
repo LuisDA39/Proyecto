@@ -3,6 +3,7 @@ using namespace  std;
 
 class tacosComidos {
 private:
+    int noDatos = 20000;
     int tacos[];
 public:
     void generarArreglo();
@@ -19,11 +20,17 @@ public:
 };
 
 void tacosComidos::generarArreglo() {
+    srand(time(nullptr));
 
+    for (int i = 0; i < noDatos; i++) {
+            tacos[i] = (rand() % 10 + 1);
+    }
 }
 
 void tacosComidos::imprimirArreglo() {
-
+    for (int i = 0; i < noDatos; i++) {
+        cout << tacos[i];
+    }
 }
 
 void tacosComidos::bubbleSort() {

@@ -8,10 +8,8 @@ int partition(int arr[], int start, int end) {
 		if (arr[i] <= pivot)
 			count++;
 	}
-	// Giving pivot element its correct position
 	int pivotIndex = start + count;
 	swap(arr[pivotIndex], arr[start]);
-	// Sorting left and right parts of the pivot element
 	int i = start, j = end;
 	while (i < pivotIndex && j > pivotIndex) {
 		while (arr[i] <= pivot) {

@@ -111,11 +111,12 @@ public:
     unsigned t0, t1;
     int tacos[36500]{};
     double tiempos[9]{};
-    string metodos[9]{};
+    string metodos[9] = {"Bubble", "Selection", "Insertion", "Counting", "Shell", "Quick", "Heap", "Merge", "Radix"};
 
 public:
     void generarArreglo();
     void imprimirArreglo();
+    void imprimirTiempos();
     void bubbleSort();
     void selectionSort();
     void insertionSort();
@@ -139,6 +140,28 @@ void comeTacos::generarArreglo() {
 void comeTacos::imprimirArreglo() {
     for (int i = 0; i < noDatos; i++) {
         cout << tacos[i] << " ";
+    }
+}
+
+void comeTacos::imprimirTiempos() {
+    for(int i = 0; i < 9 ; i++){
+        int min = i;
+        for(int j = i + 1; j < 9; j++){
+            if(tiempos[j] < tiempos[min]){
+                min = j;
+            }
+        }
+        string auxmetodos = metodos[i];
+        metodos[i] = metodos[min];
+        metodos[min] = auxmetodos;
+        double auxtiempos = tiempos[i];
+        tiempos[i] = tiempos[min];
+        tiempos[min] = auxtiempos;
+    }
+
+    for (int i = 0; i < 9; i++) {
+        cout << metodos[i] << ": ";
+        cout << tiempos[i] << endl;
     }
 }
 
@@ -320,14 +343,32 @@ void comeTacos::radixSort() {
 int main() {
     comeTacos degustador1;
 
-    cout << "Tacos comidos al dia desordenados: " << endl;
+    degustador1.generarArreglo();
+    degustador1.bubbleSort();
 
     degustador1.generarArreglo();
-    degustador1.imprimirArreglo();
+    degustador1.selectionSort();
 
-    cout <<endl << "Tacos comidos al dia ordenados: " << endl;
-    //Prueba de quick sort
-    int size = sizeof(degustador1.tacos)/sizeof(degustador1.tacos[0]);
-    degustador1.quickSort(degustador1.tacos, 0, size);
-    degustador1.imprimirArreglo();
+    degustador1.generarArreglo();
+    degustador1.insertionSort();
+
+    degustador1.generarArreglo();
+    degustador1.countingSort();
+
+    degustador1.generarArreglo();
+    degustador1.mergeSort(degustador1.tacos, 0, degustador1.noDatos);
+
+    degustador1.generarArreglo();
+    degustador1.radixSort();
+
+    degustador1.generarArreglo();
+    degustador1.shellSort();
+
+    degustador1.generarArreglo();
+    degustador1.heapSort();
+
+    degustador1.generarArreglo();
+    degustador1.quickSort(degustador1.tacos, 0, degustador1.noDatos);
+
+    degustador1.imprimirTiempos();
 }

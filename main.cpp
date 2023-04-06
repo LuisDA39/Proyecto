@@ -1,8 +1,34 @@
 #include <iostream>
 using namespace  std;
 
+int partition(int arr[], int start, int end) {
+	int pivot = arr[start];
+	int count = 0;
+	for (int i = start + 1; i <= end; i++) {
+		if (arr[i] <= pivot)
+			count++;
+	}
+	// Giving pivot element its correct position
+	int pivotIndex = start + count;
+	swap(arr[pivotIndex], arr[start]);
+	// Sorting left and right parts of the pivot element
+	int i = start, j = end;
+	while (i < pivotIndex && j > pivotIndex) {
+		while (arr[i] <= pivot) {
+			i++;
+		}
+		while (arr[j] > pivot) {
+			j--;
+		}
+		if (i < pivotIndex && j > pivotIndex) {
+			swap(arr[i++], arr[j--]);
+		}
+	}
+	return pivotIndex;
+}
+
 class comeTacos {
-private:
+public:
     int noDatos = 365;
     int tacos[365]{};
     unsigned tiempos[9]{};
@@ -15,7 +41,7 @@ public:
     void insertionSort();
     void countingSort();
     void shellSort();
-    void quickSort();
+    void quickSort(int arr[], int start, int end);
     void heapSort();
     void mergeSort();
     void radixSort();
@@ -47,7 +73,6 @@ void comeTacos::bubbleSort() {
                 int aux = tacos[j];
                 tacos[j] = tacos[j + 1];
                 tacos[j + 1] = aux;
-
             }
     }
 }
@@ -127,8 +152,12 @@ void comeTacos::shellSort() {
     }
 }
 
-void comeTacos::quickSort() {
-
+void comeTacos::quickSort(int arr[], int start, int end) {
+	if (start >= end)
+		return;
+	int p = partition(arr, start, end);
+	quickSort(arr, start, p - 1);
+	quickSort(arr, p + 1, end);
 }
 
 
@@ -153,8 +182,8 @@ int main() {
     degustador1.imprimirArreglo();
 
     cout <<endl << "Tacos comidos al dia ordenados: " << endl;
-
+    //Prueba de quick sort
+    int size = sizeof(degustador1.tacos)/sizeof(degustador1.tacos[0]);
+    degustador1.quickSort(degustador1.tacos, 0, size);
     degustador1.imprimirArreglo();
-
-
 }

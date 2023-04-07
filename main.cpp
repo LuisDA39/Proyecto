@@ -155,11 +155,11 @@ void comeTacos::ordenarTiempos(){
     for (pasada = 0; pasada < 9 - 1 && interruptor; pasada++) {
         interruptor = false;
         for (j = 0; j < 9 - pasada - 1; j++)
-        if (promedios[j] > promedios[j + 1]) {
-            interruptor = true;
-            intercambiarDouble(promedios[j], promedios[j + 1]);
-            intercambiar(metodos[j], metodos[j + 1]);
-        }
+            if (promedios[j] > promedios[j + 1]) {
+                interruptor = true;
+                intercambiarDouble(promedios[j], promedios[j + 1]);
+                intercambiar(metodos[j], metodos[j + 1]);
+            }
     }
     cout << "Tiempos ordenados en base a sus promedios: " << endl;
     for(int i = 0; i < 9; i++) {
@@ -185,13 +185,13 @@ void comeTacos::imprimirTiempos() {
     }*/
     cout << "tiemposTotales totales: " << endl;
     for (int i = 0; i < 9; i++) {
-        promedios[i] = suma/5.0;
         suma = 0;
         cout << metodos[i] << ": ";
         for(int j = 0; j < 5; j++){
             cout << tiemposTotales[i][j] << endl;
             suma += tiemposTotales[i][j];
         }
+        promedios[i] = suma/5.0;
     }
 }
 

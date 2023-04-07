@@ -144,6 +144,7 @@ void comeTacos::generarArreglo() {
 }
 
 void comeTacos::imprimirArreglo() {
+    cout << "Arreglo: " << endl;
     for (int i = 0; i < noDatos; i++) {
         cout << tacos[i] << " ";
     }
@@ -169,6 +170,7 @@ void comeTacos::ordenarTiempos(){
 
 void comeTacos::imprimirTiempos() {
     double suma = 0;
+    bool igual = true;
     /*for(int i = 0; i < 9 ; i++){
         int min = i;
         for(int j = i + 1; j < 9; j++){
@@ -183,20 +185,25 @@ void comeTacos::imprimirTiempos() {
         tiemposTotales[i] = tiemposTotales[min];
         tiemposTotales[min] = auxtiemposTotales;
     }*/
-    cout << "tiemposTotales totales: " << endl;
+    cout << "Tiempos Totales: " << endl;
     for (int i = 0; i < 9; i++) {
+        igual = true;
         suma = 0;
         cout << metodos[i] << ": ";
         for(int j = 0; j < 5; j++){
+            if(tiemposTotales[j] == tiemposTotales[j+1] && igual) igual = true;
+            else igual = false;
             cout << tiemposTotales[i][j] << endl;
             suma += tiemposTotales[i][j];
         }
+        if(igual) cout << "No hubo cambios." << endl;
+        else cout << "Hubo cambios." << endl;
         promedios[i] = suma/5.0;
     }
 }
 
 void comeTacos::bubbleSort() {
-    t0 = clock(); 
+    // t0 = clock(); 
     bool interruptor = true;
     int pasada, j;
     for (pasada = 0; pasada < noDatos - 1 && interruptor; pasada++) {
@@ -209,13 +216,13 @@ void comeTacos::bubbleSort() {
                 tacos[j + 1] = aux;
             }
     }
-    t1 = clock();
+    // t1 = clock();
     // tiemposTotales[0] = (double(t1-t0)/CLOCKS_PER_SEC);
 
 }
 
 void comeTacos::selectionSort() {
-    t0 = clock(); 
+    // t0 = clock(); 
     for(int i = 0; i < noDatos; i++) {
         int min = i;
         for (int j = i + 1; j < noDatos; j++) {
@@ -227,12 +234,12 @@ void comeTacos::selectionSort() {
         tacos[i] = tacos[min];
         tacos[min] = aux;
     }
-    t1 = clock();
+    // t1 = clock();
     // tiemposTotales[1] = (double(t1-t0)/CLOCKS_PER_SEC);
 }
 
 void comeTacos::insertionSort() {
-    t0 = clock(); 
+    // t0 = clock(); 
     for (int i = 0; i < noDatos; i++) {
         int pos = i;
         int aux = tacos[i];
@@ -242,12 +249,12 @@ void comeTacos::insertionSort() {
         }
         tacos[pos] = aux;
     }
-    t1 = clock();
+    // t1 = clock();
     // tiemposTotales[2] = (double(t1-t0)/CLOCKS_PER_SEC);
 }
 
 void comeTacos::countingSort() {
-    t0 = clock(); 
+    // t0 = clock(); 
     int size = noDatos;
     int output[size];
     int count[11];
@@ -272,12 +279,12 @@ void comeTacos::countingSort() {
     for (int i = 0; i < size; i++) {
         tacos[i] = output[i];
     }
-    t1 = clock();
+    // t1 = clock();
     // tiemposTotales[3] = (double(t1-t0)/CLOCKS_PER_SEC);
 }
 
 void comeTacos::shellSort() {
-    t0 = clock(); 
+    // t0 = clock(); 
     for (int gap = noDatos/2; gap > 0; gap /= 2) {
         for (int i = gap; i < noDatos; i++) {
             int temp = tacos[i];
@@ -288,24 +295,24 @@ void comeTacos::shellSort() {
             tacos[j] = temp;
         }
     }
-    t1 = clock();
+    // t1 = clock();
     // tiemposTotales[4] = (double(t1-t0)/CLOCKS_PER_SEC);
 }
 
 void comeTacos::quickSort(int arr[], int start, int end) {
-    t0 = clock(); 
+    // t0 = clock(); 
 	if (start >= end)
 		return;
 	int p = partition(arr, start, end);
 	quickSort(arr, start, p - 1);
 	quickSort(arr, p + 1, end);
-    t1 = clock();
+    // t1 = clock();
     // tiemposTotales[5] = (double(t1-t0)/CLOCKS_PER_SEC);
 }
 
 
 void comeTacos::heapSort() {
-    t0 = clock(); 
+    // t0 = clock(); 
     for (int i = noDatos / 2 - 1; i >= 0; i--) {
         heapify(tacos, noDatos, i);
     }
@@ -313,19 +320,19 @@ void comeTacos::heapSort() {
         swap(tacos[0], tacos[i]);
         heapify(tacos, i, 0);
     }
-    t1 = clock();
+    // t1 = clock();
     // tiemposTotales[6] = (double(t1-t0)/CLOCKS_PER_SEC);
 }
 
 void comeTacos::mergeSort(int arr[], int l, int r) {
-    t0 = clock(); 
+    // t0 = clock(); 
     if (l < r) {
         int m = l + (r - l) / 2;
         mergeSort(arr, l, m);
         mergeSort(arr, m + 1, r);
         merge(arr, l, m, r);
     }
-    t1 = clock();
+    // t1 = clock();
     // tiemposTotales[7] = (double(t1-t0)/CLOCKS_PER_SEC);
 }
 
@@ -335,7 +342,7 @@ void comeTacos::radixSort() {
     for (int exp = 1; m / exp > 0; exp *= 10)
         CountSort(tacos, noDatos, exp);
     
-    t1 = clock();
+    // t1 = clock();
     // tiemposTotales[8] = (double(t1-t0)/CLOCKS_PER_SEC);
 }
 
@@ -343,72 +350,72 @@ int main() {
     comeTacos degustador1;
     //Bubble sort
     for(int i = 0; i < 5; i++){
-        t0 = clock(); 
         degustador1.generarArreglo();
+        t0 = clock(); 
         degustador1.bubbleSort();
         t1 = clock();
         degustador1.tiemposTotales[0][i] = (double(t1-t0)/CLOCKS_PER_SEC);
     }
     //Selection sort
     for(int i = 0; i < 5; i++){
-        t0 = clock(); 
         degustador1.generarArreglo();
+        t0 = clock(); 
         degustador1.selectionSort();
         t1 = clock();
         degustador1.tiemposTotales[1][i] = (double(t1-t0)/CLOCKS_PER_SEC);
     }
     //Insertion sort
     for(int i = 0; i < 5; i++){
-        t0 = clock(); 
         degustador1.generarArreglo();
+        t0 = clock(); 
         degustador1.insertionSort();
         t1 = clock();
         degustador1.tiemposTotales[2][i] = (double(t1-t0)/CLOCKS_PER_SEC);
     }
     //Counting sort
     for(int i = 0; i < 5; i++){
-        t0 = clock(); 
         degustador1.generarArreglo();
+        t0 = clock(); 
         degustador1.countingSort();
         t1 = clock();
         degustador1.tiemposTotales[3][i] = (double(t1-t0)/CLOCKS_PER_SEC);
     }
     //Merge sort
     for(int i = 0; i < 5; i++){
-        t0 = clock(); 
         degustador1.generarArreglo();
+        t0 = clock(); 
         degustador1.mergeSort(degustador1.tacos, 0, degustador1.noDatos);
         t1 = clock();
         degustador1.tiemposTotales[4][i] = (double(t1-t0)/CLOCKS_PER_SEC);
     }
     //Radix sort
     for(int i = 0; i < 5; i++){
-        t0 = clock(); 
         degustador1.generarArreglo();
+        t0 = clock(); 
         degustador1.radixSort();
         t1 = clock();
         degustador1.tiemposTotales[5][i] = (double(t1-t0)/CLOCKS_PER_SEC);
     }
     //Shell sort
     for(int i = 0; i < 5; i++){
-        t0 = clock(); 
         degustador1.generarArreglo();
+        t0 = clock(); 
         degustador1.shellSort();
         t1 = clock();
         degustador1.tiemposTotales[6][i] = (double(t1-t0)/CLOCKS_PER_SEC);
     }
     //Heap sort
     for(int i = 0; i < 5; i++){
-        t0 = clock(); 
         degustador1.generarArreglo();
+        t0 = clock(); 
         degustador1.heapSort();
         t1 = clock();
         degustador1.tiemposTotales[7][i] = (double(t1-t0)/CLOCKS_PER_SEC);
     }
     //Quick sort
     for(int i = 0; i < 5; i++){
-        t0 = clock(); 
         degustador1.generarArreglo();
+        t0 = clock(); 
         degustador1.quickSort(degustador1.tacos, 0, degustador1.noDatos);
         t1 = clock();
         degustador1.tiemposTotales[8][i] = (double(t1-t0)/CLOCKS_PER_SEC);

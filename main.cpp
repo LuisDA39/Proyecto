@@ -341,7 +341,6 @@ void comeTacos::radixSort() {
     int m = getMax(tacos, noDatos); 
     for (int exp = 1; m / exp > 0; exp *= 10)
         CountSort(tacos, noDatos, exp);
-    
     // t1 = clock();
     // tiemposTotales[8] = (double(t1-t0)/CLOCKS_PER_SEC);
 }

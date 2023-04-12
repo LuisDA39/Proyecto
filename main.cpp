@@ -99,14 +99,15 @@ void CountSort(int arr[], int n, int exp){
         arr[i] = output[i];
 }
 
-void intercambiar(string& x, string& y) {
-    string aux = x;
+
+void intercambiarDouble(double& x, double& y) {
+    double aux = x;
     x = y;
     y = aux;
 }
 
-void intercambiarDouble(double& x, double& y) {
-    double aux = x;
+void intercambiar(string& x, string& y) {
+    string aux = x;
     x = y;
     y = aux;
 }

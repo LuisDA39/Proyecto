@@ -1,5 +1,6 @@
 #include <iostream>
 #include <ctime>
+// #include "funciones.h"
 using namespace  std;
 
 unsigned t0, t1;
@@ -171,20 +172,6 @@ void comeTacos::ordenarTiempos(){
 void comeTacos::imprimirTiempos() {
     double suma = 0;
     bool igual = true;
-    /*for(int i = 0; i < 9 ; i++){
-        int min = i;
-        for(int j = i + 1; j < 9; j++){
-            if(tiemposTotales[j] < tiemposTotales[min]){
-                min = j;
-            }
-        }
-        string auxmetodos = metodos[i];
-        metodos[i] = metodos[min];
-        metodos[min] = auxmetodos;
-        double auxtiemposTotales = tiemposTotales[i];
-        tiemposTotales[i] = tiemposTotales[min];
-        tiemposTotales[min] = auxtiemposTotales;
-    }*/
     cout << "Tiempos Totales: " << endl;
     for (int i = 0; i < 9; i++) {
         igual = true;
@@ -203,7 +190,6 @@ void comeTacos::imprimirTiempos() {
 }
 
 void comeTacos::bubbleSort() {
-    // t0 = clock(); 
     bool interruptor = true;
     int pasada, j;
     for (pasada = 0; pasada < noDatos - 1 && interruptor; pasada++) {
@@ -216,13 +202,10 @@ void comeTacos::bubbleSort() {
                 tacos[j + 1] = aux;
             }
     }
-    // t1 = clock();
-    // tiemposTotales[0] = (double(t1-t0)/CLOCKS_PER_SEC);
 
 }
 
 void comeTacos::selectionSort() {
-    // t0 = clock(); 
     for(int i = 0; i < noDatos; i++) {
         int min = i;
         for (int j = i + 1; j < noDatos; j++) {
@@ -234,12 +217,9 @@ void comeTacos::selectionSort() {
         tacos[i] = tacos[min];
         tacos[min] = aux;
     }
-    // t1 = clock();
-    // tiemposTotales[1] = (double(t1-t0)/CLOCKS_PER_SEC);
 }
 
 void comeTacos::insertionSort() {
-    // t0 = clock(); 
     for (int i = 0; i < noDatos; i++) {
         int pos = i;
         int aux = tacos[i];
@@ -249,12 +229,9 @@ void comeTacos::insertionSort() {
         }
         tacos[pos] = aux;
     }
-    // t1 = clock();
-    // tiemposTotales[2] = (double(t1-t0)/CLOCKS_PER_SEC);
 }
 
 void comeTacos::countingSort() {
-    // t0 = clock(); 
     int size = noDatos;
     int output[size];
     int count[11];
@@ -279,12 +256,9 @@ void comeTacos::countingSort() {
     for (int i = 0; i < size; i++) {
         tacos[i] = output[i];
     }
-    // t1 = clock();
-    // tiemposTotales[3] = (double(t1-t0)/CLOCKS_PER_SEC);
 }
 
 void comeTacos::shellSort() {
-    // t0 = clock(); 
     for (int gap = noDatos/2; gap > 0; gap /= 2) {
         for (int i = gap; i < noDatos; i++) {
             int temp = tacos[i];
@@ -295,8 +269,6 @@ void comeTacos::shellSort() {
             tacos[j] = temp;
         }
     }
-    // t1 = clock();
-    // tiemposTotales[4] = (double(t1-t0)/CLOCKS_PER_SEC);
 }
 
 void comeTacos::quickSort(int arr[], int start, int end) {
@@ -306,13 +278,10 @@ void comeTacos::quickSort(int arr[], int start, int end) {
 	int p = partition(arr, start, end);
 	quickSort(arr, start, p - 1);
 	quickSort(arr, p + 1, end);
-    // t1 = clock();
-    // tiemposTotales[5] = (double(t1-t0)/CLOCKS_PER_SEC);
 }
 
 
 void comeTacos::heapSort() {
-    // t0 = clock(); 
     for (int i = noDatos / 2 - 1; i >= 0; i--) {
         heapify(tacos, noDatos, i);
     }
@@ -320,29 +289,21 @@ void comeTacos::heapSort() {
         swap(tacos[0], tacos[i]);
         heapify(tacos, i, 0);
     }
-    // t1 = clock();
-    // tiemposTotales[6] = (double(t1-t0)/CLOCKS_PER_SEC);
 }
 
 void comeTacos::mergeSort(int arr[], int l, int r) {
-    // t0 = clock(); 
     if (l < r) {
         int m = l + (r - l) / 2;
         mergeSort(arr, l, m);
         mergeSort(arr, m + 1, r);
         merge(arr, l, m, r);
     }
-    // t1 = clock();
-    // tiemposTotales[7] = (double(t1-t0)/CLOCKS_PER_SEC);
 }
 
 void comeTacos::radixSort() {
-    t0 = clock(); 
     int m = getMax(tacos, noDatos); 
     for (int exp = 1; m / exp > 0; exp *= 10)
         CountSort(tacos, noDatos, exp);
-    // t1 = clock();
-    // tiemposTotales[8] = (double(t1-t0)/CLOCKS_PER_SEC);
 }
 
 int main() {

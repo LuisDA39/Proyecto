@@ -94,14 +94,14 @@ void CountSort(int arr[], int n, int exp){
         arr[i] = output[i];
 }
 
-void intercambiarDouble(double x, double y) {
+void intercambiarDouble(double& x, double& y) {
     double aux = x;
     x = y;
     y = aux;
 }
 
 
-void intercambiarArray(int x, int y) {
+void intercambiarArray(int& x, int& y) {
     int aux = x;
     x = y;
     y = aux;

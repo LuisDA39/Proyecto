@@ -1,5 +1,10 @@
 # Sorting Algorithms Project
 
+## Authors
+
+- [@LuisDA39](https://github.com/LuisDA39)
+- [@Kurisari](https://www.github.com/kurisari)
+
 This project, created for the Data Structures and Algorithms 1 course, compares various sorting algorithms based on their execution times. The theme of the project revolves around a taqueria (taco shop), and it includes several popular sorting methods implemented in C++.
 
 ## Project Description

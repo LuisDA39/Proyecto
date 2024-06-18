@@ -1,4 +1,4 @@
-# Taco Sorting Algorithms
+# Sorting Algorithms Project
 
 This project, created for the Data Structures and Algorithms 1 course, compares various sorting algorithms based on their execution times. The theme of the project revolves around a taqueria (taco shop), and it includes several popular sorting methods implemented in C++.
 
